@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('client', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('orders_responses', function (Blueprint $table) {
+            $table->string('scores')->nullable()->change();
         });
     }
 
@@ -27,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('orders_responses', function (Blueprint $table) {
+            $table->string('scores')->change();
+        });
     }
 };
